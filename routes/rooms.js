@@ -3,7 +3,7 @@ const router = express.Router();
 const Room = require("../models/room");
 const { check, validationResult } = require("express-validator");
 
-// @route GET api/room/:roomId
+// @route GET api/rooms
 // @desk Get all rooms
 router.get("/", async (req, res) => {
 	try {
@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 	}
 });
 
-// @route GET api/room/:roomId
+// @route GET api/rooms/:roomId
 // @desk Get room by id
 router.get("/:roomId", async (req, res) => {
 	try {
@@ -27,7 +27,7 @@ router.get("/:roomId", async (req, res) => {
 	}
 });
 
-// @route POST api/room
+// @route POST api/rooms
 // @desk Add new room
 router.post(
 	"/",
@@ -55,7 +55,7 @@ router.post(
 	},
 );
 
-// @route DELETE api/room/:id
+// @route DELETE api/rooms/:id
 // @desk Delete user
 router.delete("/:id", async (req, res) => {
 	try {

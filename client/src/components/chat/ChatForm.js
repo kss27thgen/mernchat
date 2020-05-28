@@ -2,17 +2,19 @@ import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faFileImage,
-	faCamera,
 	faToggleOn,
 	faToggleOff,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import socket from "../../utils/socket";
 import UserContext from "../../context/user/userContext";
+import RoomContext from "../../context/room/roomContext";
 
 const ChatForm = (props) => {
 	const userContext = useContext(UserContext);
+	const roomContext = useContext(RoomContext);
 	const { currentUser, toggleMenu, menu } = userContext;
+	const { currentRoom } = roomContext;
 
 	const [content, setContent] = useState("");
 
@@ -22,8 +24,11 @@ const ChatForm = (props) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		emitChat();
-		postChat();
+		if (menu) {
+		} else {
+			emitChat();
+			postChat();
+		}
 		setContent("");
 	};
 
@@ -36,10 +41,7 @@ const ChatForm = (props) => {
 			username: currentUser.username,
 			content,
 		};
-		const res = await axios.post(
-			`/api/chat/${currentUser.roomId}`,
-			newChat,
-		);
+		const res = await axios.post(`/api/chat/${currentRoom._id}`, newChat);
 		console.log(res.data);
 	};
 
@@ -51,15 +53,17 @@ const ChatForm = (props) => {
 					name="content"
 					autoComplete="off"
 					value={content}
-					placeholder="Say something..."
+					placeholder={menu ? "Create Channel" : "Say something..."}
 					onChange={handleInput}
 				/>
-				<label htmlFor="file">
-					<FontAwesomeIcon
-						className="icon-camera"
-						icon={faFileImage}
-					/>
-				</label>
+				{!menu && (
+					<label htmlFor="file">
+						<FontAwesomeIcon
+							className="icon-camera"
+							icon={faFileImage}
+						/>
+					</label>
+				)}
 				<input type="file" id="file" hidden />
 			</div>
 			<div className="chat-button" onClick={() => toggleMenu()}>

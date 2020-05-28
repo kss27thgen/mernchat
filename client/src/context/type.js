@@ -6,11 +6,10 @@ export const TOGLLE_MENU = "TOGLLE_MENU";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const SET_ERROR = "SET_ERROR";
 
-export const UPDATE_CONTACT = "UPDATE_CONTACT";
-export const FILTER_CONTACTS = "FILTER_CONTACTS";
-export const CLEAR_CONTACTS = "CLEAR_CONTACTS";
-export const CLEAR_FILTER = "CLEAR_FILTER";
-export const CONTACT_ERROR = "CONTACT_ERROR";
+export const SET_ROOMS = "SET_ROOMS";
+export const SET_CURRENT_ROOM = "SET_CURRENT_ROOM";
+
+//
 export const SET_ALERT = "SET_ALERT";
 export const REMOVE_ALERT = "REMOVE_ALERT";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
