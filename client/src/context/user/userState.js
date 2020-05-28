@@ -7,7 +7,7 @@ const UserState = (props) => {
 	const initialState = {
 		users: [],
 		currentUser: null,
-		menu: false,
+		menu: true,
 	};
 
 	const [state, dispatch] = useReducer(userReducer, initialState);

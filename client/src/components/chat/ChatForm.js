@@ -42,7 +42,6 @@ const ChatForm = (props) => {
 			content,
 		};
 		const res = await axios.post(`/api/chat/${currentRoom._id}`, newChat);
-		console.log(res.data);
 	};
 
 	return (

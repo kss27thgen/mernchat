@@ -64,7 +64,8 @@ router.delete("/:id", async (req, res) => {
 			return res.status(404).json({ message: "Message not found" });
 
 		await Room.findByIdAndRemove(req.params.id);
-		res.json({ message: "room removed" });
+		const rooms = await Room.find();
+		res.json({ rooms });
 	} catch (err) {
 		console.log(err);
 		res.status(500).send("Server Error");

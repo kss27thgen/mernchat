@@ -12,9 +12,6 @@ const Chat = (props) => {
 	const { setRooms, setCurrentRoom } = roomContext;
 
 	useEffect(() => {
-		// if (currentUser === null) {
-		// 	props.history.push("/");
-		// }
 		fetchRooms();
 	}, []);
 
