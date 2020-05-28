@@ -76,7 +76,7 @@ li {
     &-form {
         background: var(--bg-green);
         border-radius: 8px;
-
+        border: 3px solid lightgray;
         padding: 3rem;
 
         input {
@@ -191,8 +191,8 @@ li {
             padding: .5rem 1.5rem;
             outline: none;
             border: 2px solid lightgray;
+            user-select: none;
         }
-
 
         &-button {
             background: var(--color-white);
@@ -232,10 +232,23 @@ li {
     border: 2px solid lightgray;
     border-radius: 8px;
     background: rgb(252, 255, 251);
+    position: relative;
 
     @media (min-width: 576px) {
         max-height: 65vh;
         min-height: 65vh;
+    }
+
+    .room-list-roomname {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 3;
+        color: green;
+        font-style: italic;
+        border: 1px solid green;
+        padding: .2rem .5rem;
+        border-radius: 8px;
     }
 
 
@@ -279,7 +292,7 @@ li {
     border: 2px solid lightgray;
     border-radius: 8px;
     background: rgb(252, 255, 251);
-    padding: 1rem;
+    padding: 1rem 3rem;
 
     @media (min-width: 576px) {
         max-height: 65vh;
@@ -288,6 +301,31 @@ li {
 
     &-title {
         text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .room-item {
+        font-size: 1.6rem;
+        padding: .5rem 2rem;
+        border: 1px solid gray;
+        cursor: pointer;
+        border-radius: 8px;
+        position: relative;
+
+        &:hover .room-item__name {
+            opacity: .2;
+        }
+
+        &__icon {
+            position: absolute;
+            right: 5px;
+            top: 25%;
+
+            &:hover {
+                color: red;
+            }
+        }
+
     }
 }
 

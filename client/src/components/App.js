@@ -5,18 +5,21 @@ import Top from "./pages/Top";
 import Chat from "./pages/Chat";
 import UserState from "../context/user/userState";
 import ErrorState from "../context/error/errorState";
+import RoomState from "../context/room/roomState";
 
 function App() {
 	return (
 		<ErrorState>
-			<UserState>
-				<BrowserRouter>
-					<Switch>
-						<Route exact path="/" component={Top} />
-						<Route path="/chat" component={Chat} />
-					</Switch>
-				</BrowserRouter>
-			</UserState>
+			<RoomState>
+				<UserState>
+					<BrowserRouter>
+						<Switch>
+							<Route exact path="/" component={Top} />
+							<Route path="/chat" component={Chat} />
+						</Switch>
+					</BrowserRouter>
+				</UserState>
+			</RoomState>
 		</ErrorState>
 	);
 }
