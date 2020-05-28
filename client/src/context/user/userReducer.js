@@ -1,4 +1,4 @@
-import { SET_CURRENT, ADD_USER, CLEAR_CURRENT } from "../type";
+import { SET_CURRENT, ADD_USER, CLEAR_CURRENT, TOGLLE_MENU } from "../type";
 
 export default (state, action) => {
 	switch (action.type) {
@@ -11,6 +11,11 @@ export default (state, action) => {
 			return {
 				...state,
 				users: [action.payload, ...state.users],
+			};
+		case TOGLLE_MENU:
+			return {
+				...state,
+				menu: !state.menu,
 			};
 		default:
 			return state;
