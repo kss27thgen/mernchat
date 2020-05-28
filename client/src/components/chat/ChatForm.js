@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import {
+	faFileImage,
+	faCamera,
+	faToggleOn,
+	faToggleOff,
+} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import socket from "../../utils/socket";
+import UserContext from "../../context/user/userContext";
 
-const ChatForm = ({ currentUser }) => {
+const ChatForm = (props) => {
+	const userContext = useContext(UserContext);
+	const { currentUser, toggleMenu, menu } = userContext;
+
 	const [content, setContent] = useState("");
 
 	const handleInput = (e) => {
@@ -36,18 +45,29 @@ const ChatForm = ({ currentUser }) => {
 
 	return (
 		<form className="chat-form" onSubmit={handleSubmit}>
-			<input
-				className="chat-input"
-				name="content"
-				autoComplete="off"
-				value={content}
-				placeholder="Say something..."
-				onChange={handleInput}
-			/>
-			<label className="chat-button" htmlFor="file">
-				<FontAwesomeIcon className="icon-camera" icon={faCamera} />
-			</label>
-			<input type="file" id="file" hidden />
+			<div className="chat-input-wrapper">
+				<input
+					className="chat-input"
+					name="content"
+					autoComplete="off"
+					value={content}
+					placeholder="Say something..."
+					onChange={handleInput}
+				/>
+				<label htmlFor="file">
+					<FontAwesomeIcon
+						className="icon-camera"
+						icon={faFileImage}
+					/>
+				</label>
+				<input type="file" id="file" hidden />
+			</div>
+			<div className="chat-button" onClick={() => toggleMenu()}>
+				<FontAwesomeIcon
+					className="icon-menu"
+					icon={menu ? faToggleOff : faToggleOn}
+				/>
+			</div>
 		</form>
 	);
 };

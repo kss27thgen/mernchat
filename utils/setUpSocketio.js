@@ -23,7 +23,7 @@ module.exports = (io) => {
 				formatMessage(
 					uuidv4(),
 					botName,
-					`(${user.username}), Welcome to Chatroom!`,
+					`Welcome to Chatroom, ${user.username}!`,
 				),
 			);
 

@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import ChatItem from "./ChatItem";
 import { withRouter } from "react-router-dom";
 import socket from "../../utils/socket";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import Menu from "./Menu";
+import UserContext from "../../context/user/userContext";
+import Loader from "../pages/Loader";
 
 const ChatList = ({ history, currentUser }) => {
+	const userContext = useContext(UserContext);
+	const { menu } = userContext;
+
 	const [chat, setChat] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		if (!currentUser) {
-			history.push("/");
+			// history.push("/");
 		} else {
 			fetchChat();
 
@@ -23,7 +30,7 @@ const ChatList = ({ history, currentUser }) => {
 					username: currentUser.username,
 					roomId: currentUser.roomId,
 				});
-			}, 1500);
+			}, 2000);
 		}
 
 		return () => {
@@ -33,14 +40,18 @@ const ChatList = ({ history, currentUser }) => {
 
 	const fetchChat = async () => {
 		const res = await axios.get(`/api/chat/${currentUser.roomId}`);
-
+		setLoading(false);
 		setChat(res.data);
 	};
 
-	return (
+	return menu ? (
+		<Menu />
+	) : (
 		<div className="chat-list-wrapper">
 			<TransitionGroup component="div" className="chat-list">
-				{chat.length > 0 &&
+				{chat.length === 0 || loading ? (
+					<Loader />
+				) : (
 					chat.map((chat) => (
 						<CSSTransition
 							key={chat._id}
@@ -49,7 +60,8 @@ const ChatList = ({ history, currentUser }) => {
 						>
 							<ChatItem chat={chat} />
 						</CSSTransition>
-					))}
+					))
+				)}
 			</TransitionGroup>
 		</div>
 	);

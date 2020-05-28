@@ -8,17 +8,17 @@ const Chat = (props) => {
 	const userContext = useContext(UserContext);
 	const { currentUser } = userContext;
 
-	useEffect(() => {
-		if (currentUser === null) {
-			props.history.push("/");
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (currentUser === null) {
+	// 		props.history.push("/");
+	// 	}
+	// }, []);
 
 	return (
 		<div className="container">
 			<div className="chat">
 				<ChatList currentUser={currentUser} />
-				<ChatForm currentUser={currentUser} />
+				<ChatForm />
 			</div>
 		</div>
 	);

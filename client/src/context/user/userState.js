@@ -1,12 +1,13 @@
 import React, { useReducer } from "react";
 import UserContext from "./userContext";
 import userReducer from "./userReducer";
-import { SET_CURRENT, ADD_USER, CLEAR_CURRENT } from "../type";
+import { SET_CURRENT, ADD_USER, CLEAR_CURRENT, TOGLLE_MENU } from "../type";
 
 const UserState = (props) => {
 	const initialState = {
 		users: [],
 		currentUser: null,
+		menu: true,
 	};
 
 	const [state, dispatch] = useReducer(userReducer, initialState);
@@ -21,13 +22,20 @@ const UserState = (props) => {
 		dispatch({ type: ADD_USER, payload: user });
 	};
 
+	// Toggle menu
+	const toggleMenu = () => {
+		dispatch({ type: TOGLLE_MENU });
+	};
+
 	return (
 		<UserContext.Provider
 			value={{
 				users: state.users,
 				currentUser: state.currentUser,
+				menu: state.menu,
 				setCurrent,
 				addUser,
+				toggleMenu,
 			}}
 		>
 			{props.children}

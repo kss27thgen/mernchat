@@ -122,6 +122,8 @@ li {
     justify-content: center;
     align-items: center;
 
+
+
     .chat {
         background: var(--bg-green);
         width: 85%;
@@ -155,22 +157,42 @@ li {
             width: 100%;
             display: flex;
             justify-content: center;
+            align-items: center;
 
             @media (min-width: 576px) {
                 padding: 1.5rem 0;
             }
         }
 
-        &-input {
+        &-input-wrapper {
+            position: relative;
             width: 70%;
-            font-size: 1.6rem;
+
+
+            .icon-camera {
+                position: absolute;
+                right: 1rem;
+                bottom: 18%;
+                font-size: 2rem;
+                cursor: pointer;
+                color: var(--color-gray-dark-2);
+
+                &:active {
+                    transform: translateY(-5px);
+                }
+            }
+        }
+
+        &-input {
+            font-size: 1.7rem;
+            width: 100%;
             border-radius: 8px;
             border: none;
-            padding: 0 1.5rem;
+            padding: .5rem 1.5rem;
             outline: none;
             border: 2px solid lightgray;
-
         }
+
 
         &-button {
             background: var(--color-white);
@@ -184,12 +206,8 @@ li {
             border: 3px solid lightgray;
 
 
-            &:hover .icon-camera {
+            &:hover .icon-menu {
                 color: lightgray;
-            }
-
-            &:active {
-                transform: translateY(-5px);
             }
 
             @media (min-width: 1200px) {
@@ -197,8 +215,9 @@ li {
                 font-size: 2rem;
             }
 
-            .icon-camera {
-                color: rgb(139, 139, 139);
+            .icon-menu {
+                color: var(--color-gray-dark-2);
+                user-select: none;
             }
         }
     }
@@ -211,14 +230,14 @@ li {
     overflow-y: scroll;
     scroll-behavior: smooth;
     border: 2px solid lightgray;
+    border-radius: 8px;
+    background: rgb(252, 255, 251);
 
     @media (min-width: 576px) {
         max-height: 65vh;
         min-height: 65vh;
     }
 
-    border-radius: 8px;
-    background: rgb(252, 255, 251);
 
     .chat-list {
         padding: 2rem;
@@ -250,6 +269,41 @@ li {
         }
     }
 }
+
+.menu {
+    width: 80%;
+    min-height: 60vh;
+    max-height: 60vh;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    border: 2px solid lightgray;
+    border-radius: 8px;
+    background: rgb(252, 255, 251);
+    padding: 1rem;
+
+    @media (min-width: 576px) {
+        max-height: 65vh;
+        min-height: 65vh;
+    }
+
+    &-title {
+        text-align: center;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// transition
 
 .item-enter {
     opacity: 0.2;
