@@ -35,6 +35,11 @@ const ChatForm = (props) => {
 
 	const postRoom = async () => {
 		const res = await axios.post("/api/rooms", { roomname: content });
+		emitRoom(res.data._id);
+	};
+
+	const emitRoom = (roomId) => {
+		socket.emit("createRoom", roomId);
 	};
 
 	const emitChat = () => {

@@ -56,6 +56,11 @@ module.exports = (io) => {
 			);
 		});
 
+		// listen for createRoom
+		socket.on("createRoom", (roomId) => {
+			io.emit("room", roomId);
+		});
+
 		// Runs when client disconnects
 		socket.on("disconnect", () => {
 			const user = userLeave(socket.id);

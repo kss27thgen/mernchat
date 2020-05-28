@@ -1,12 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import RoomContext from "../../context/room/roomContext";
-import UserContext from "../../context/user/userContext";
 import Loader from "../pages/Loader";
 import RoomItem from "./RoomItem";
+import socket from "../../utils/socket";
+import axios from "axios";
 
 const Menu = () => {
 	const roomContext = useContext(RoomContext);
-	const { rooms } = roomContext;
+	const { rooms, setRooms } = roomContext;
+
+	useEffect(() => {
+		socket.on("room", (roomId) => {
+			fetchRoom(roomId);
+		});
+	}, []);
+
+	const fetchRoom = async (roomId) => {
+		const res = await axios.get("/api/rooms");
+		setRooms(res.data);
+	};
 
 	return (
 		<div className="menu">
