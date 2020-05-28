@@ -10,12 +10,12 @@ const Menu = () => {
 	const { rooms, setRooms } = roomContext;
 
 	useEffect(() => {
-		socket.on("room", (roomId) => {
-			fetchRoom(roomId);
+		socket.on("room", () => {
+			fetchRoom();
 		});
 	}, []);
 
-	const fetchRoom = async (roomId) => {
+	const fetchRoom = async () => {
 		const res = await axios.get("/api/rooms");
 		setRooms(res.data);
 	};

@@ -58,7 +58,12 @@ module.exports = (io) => {
 
 		// listen for createRoom
 		socket.on("createRoom", (roomId) => {
-			io.emit("room", roomId);
+			io.emit("room");
+		});
+
+		// listen from deleteRoom
+		socket.on("deleteRoom", () => {
+			io.emit("room");
 		});
 
 		// Runs when client disconnects

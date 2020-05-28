@@ -4,6 +4,7 @@ import RoomContext from "../../context/room/roomContext";
 import UserContext from "../../context/user/userContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import socket from "../../utils/socket";
 
 const RoomItem = ({ room }) => {
 	const roomContext = useContext(RoomContext);
@@ -19,7 +20,8 @@ const RoomItem = ({ room }) => {
 	const handleDelete = async () => {
 		if (window.confirm("Delete this channel. Are you sure?")) {
 			const res = await axios.delete(`/api/rooms/${room._id}`);
-			setRooms(res.data.rooms);
+
+			socket.emit("deleteRoom");
 		}
 	};
 
