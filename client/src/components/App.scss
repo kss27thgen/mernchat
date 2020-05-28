@@ -9,9 +9,11 @@
     --color-gray-dark-3: rgb(97, 97, 97);
     --color-black: rgb(17, 16, 14);
 
-    --bg-light-green: rgb(234, 243, 235);
-    --bg-green: rgb(195, 233, 213);
-    --bg-dark-green: rgb(150, 238, 191);
+    --bg-light-green: rgb(21, 36, 36);
+    // --bg-light-green: #ffffff;
+    // --bg-green: rgb(175, 205, 245);
+    --bg-green: #4e773f;
+    --bg-dark-green: rgb(95, 206, 147);
 }
 
 *,
@@ -137,7 +139,7 @@ li {
         flex-direction: column;
         border-radius: 8px;
         padding-top: 2rem;
-        border: 2px solid lightgray;
+        border: 2px solid var(--color-black);
 
 
         @media (min-width: 576px) {
@@ -181,6 +183,10 @@ li {
                 cursor: pointer;
                 color: var(--color-gray-dark-2);
 
+                &:hover {
+                    color: lightgray;
+                }
+
                 &:active {
                     transform: translateY(-5px);
                 }
@@ -194,7 +200,7 @@ li {
             border: none;
             padding: .5rem 1.5rem;
             outline: none;
-            border: 2px solid lightgray;
+            border: 2px solid var(--color-black);
             user-select: none;
         }
 
@@ -207,7 +213,7 @@ li {
             outline: none;
             margin-left: 0.5rem;
             cursor: pointer;
-            border: 3px solid lightgray;
+            border: 3px solid var(--color-black);
 
 
             &:hover .icon-menu {
@@ -296,11 +302,16 @@ li {
     border: 2px solid lightgray;
     border-radius: 8px;
     background: rgb(252, 255, 251);
-    padding: 1rem 5rem;
+    padding: 1rem;
 
     @media (min-width: 576px) {
         max-height: 65vh;
         min-height: 65vh;
+        padding: 2rem 3rem;
+    }
+
+    @media (min-width: 992px) {
+        padding: 2rem 7rem;
     }
 
     &-title {
@@ -316,6 +327,7 @@ li {
         border-radius: 8px;
         display: flex;
         justify-content: space-between;
+        margin-bottom: .5rem;
 
         &__name {
             flex: 5;

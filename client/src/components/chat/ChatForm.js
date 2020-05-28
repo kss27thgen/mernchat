@@ -25,11 +25,16 @@ const ChatForm = (props) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (menu) {
+			postRoom();
 		} else {
 			emitChat();
 			postChat();
 		}
 		setContent("");
+	};
+
+	const postRoom = async () => {
+		const res = await axios.post("/api/rooms", { roomname: content });
 	};
 
 	const emitChat = () => {
