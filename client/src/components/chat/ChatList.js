@@ -23,7 +23,6 @@ const ChatList = ({ history, currentUser }) => {
 			history.push("/");
 		} else {
 			socket.on("message", (message) => {
-				console.log("message received");
 				setChat((chat) => [message, ...chat]);
 			});
 
@@ -48,15 +47,16 @@ const ChatList = ({ history, currentUser }) => {
 
 	const fetchChat = async () => {
 		setLoading(true);
+		console.log("fetch chat");
+		console.log(chat);
 		const res = await axios.get(`/api/chat/${currentRoom._id}`);
 
 		setChat(res.data);
-
 		setLoading(false);
 	};
 
 	const renderChatList = () => {
-		if (loading) {
+		if (chat.length === 0 && loading) {
 			return <Loader />;
 		} else if (chat.length === 0) {
 			return <p>No post yet..</p>;

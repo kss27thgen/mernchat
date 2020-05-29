@@ -10,14 +10,10 @@ const RoomItem = ({ room }) => {
 	const roomContext = useContext(RoomContext);
 	const userContext = useContext(UserContext);
 	const { setCurrentRoom, setRooms } = roomContext;
-	const { toggleMenu, currentUser } = userContext;
+	const { toggleMenu } = userContext;
 
 	const handleClick = () => {
 		setCurrentRoom(room);
-		socket.emit("joinRoom", {
-			username: currentUser.username,
-			roomId: room._id,
-		});
 		toggleMenu();
 	};
 

@@ -19,29 +19,33 @@ router.get("/:roomId", async (req, res) => {
 
 // @route POST api/chat/:roomId
 // @desk Add new chat
-router.post("/:roomId", async (req, res) => {
-	const errors = validationResult(req);
-	if (!errors.isEmpty()) {
-		return res.status(400).json({ errors: errors.array() });
-	}
-	const { username, content, file } = req.body;
+router.post(
+	"/:roomId",
+	[check("content", "Say something...").not().isEmpty()],
+	async (req, res) => {
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
+			return res.status(400).json({ errors: errors.array() });
+		}
 
-	try {
-		const newChat = new Chat({
-			username,
-			roomId: req.params.roomId,
-			content,
-			file,
-		});
+		const { username, content } = req.body;
 
-		const chat = await newChat.save();
+		try {
+			const newChat = new Chat({
+				username,
+				roomId: req.params.roomId,
+				content,
+			});
 
-		res.json(chat);
-	} catch (err) {
-		console.log(err);
-		res.status(500).send("Server Error");
-	}
-});
+			const chat = await newChat.save();
+
+			res.json(chat);
+		} catch (err) {
+			console.log(err);
+			res.status(500).send("Server Error");
+		}
+	},
+);
 
 // @route DELETE api/chat/:id
 // @desk Delete user

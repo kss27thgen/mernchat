@@ -35,7 +35,7 @@ module.exports = (io) => {
 					formatMessage(
 						uuidv4(),
 						botName,
-						`(${user.username}) has joined the channel`,
+						`(${user.username}) has joined the chat`,
 					),
 				);
 
@@ -47,17 +47,17 @@ module.exports = (io) => {
 		});
 
 		// Listen for chatMessage
-		socket.on("chatMessage", ({ content, file, roomId }) => {
+		socket.on("chatMessage", (msg) => {
 			const user = getCurrentUser(socket.id);
 
-			io.to(roomId).emit(
+			io.to(user.roomId).emit(
 				"message",
-				formatMessage(uuidv4(), user.username, content, file),
+				formatMessage(uuidv4(), user.username, msg),
 			);
 		});
 
 		// listen for createRoom
-		socket.on("createRoom", () => {
+		socket.on("createRoom", (roomId) => {
 			io.emit("room");
 		});
 
@@ -71,8 +71,7 @@ module.exports = (io) => {
 			const user = userLeave(socket.id);
 
 			if (user) {
-				// io.to(user.roomId).emit(
-				io.emit(
+				io.to(user.roomId).emit(
 					"message",
 					formatMessage(
 						uuidv4(),

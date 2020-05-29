@@ -14,14 +14,6 @@ const ChatItem = ({ chat }) => {
 				</p>
 			</div>
 			<div className="chat-item__content">{chat.content}</div>
-			{chat.file && (
-				<img
-					className="chat-item__file"
-					src={chat.file}
-					alt="image"
-					width="250"
-				/>
-			)}
 		</div>
 	);
 };

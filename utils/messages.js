@@ -1,9 +1,8 @@
-function formatMessage(_id, username, content, file) {
+function formatMessage(_id, username, content) {
 	return {
 		_id,
 		username,
 		content,
-		file,
 		time: Date.now(),
 	};
 }
