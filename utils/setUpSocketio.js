@@ -47,12 +47,11 @@ module.exports = (io) => {
 		});
 
 		// Listen for chatMessage
-		socket.on("chatMessage", (msg) => {
+		socket.on("chatMessage", ({ content, file, roomId }) => {
 			const user = getCurrentUser(socket.id);
-
-			io.to(user.roomId).emit(
+			io.to(roomId).emit(
 				"message",
-				formatMessage(uuidv4(), user.username, msg),
+				formatMessage(uuidv4(), user.username, content, file),
 			);
 		});
 

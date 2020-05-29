@@ -26,12 +26,12 @@ const ChatList = ({ history, currentUser }) => {
 				setChat((chat) => [message, ...chat]);
 			});
 
-			setTimeout(() => {
-				socket.emit("joinRoom", {
-					username: currentUser.username,
-					roomId: currentUser.roomId,
-				});
-			}, 2000);
+			// setTimeout(() => {
+			// 	socket.emit("joinRoom", {
+			// 		username: currentUser.username,
+			// 		roomId: currentUser.roomId,
+			// 	});
+			// }, 2000);
 		}
 
 		return () => {
@@ -56,7 +56,7 @@ const ChatList = ({ history, currentUser }) => {
 	};
 
 	const renderChatList = () => {
-		if (chat.length === 0 && loading) {
+		if (loading) {
 			return <Loader />;
 		} else if (chat.length === 0) {
 			return <p>No post yet..</p>;
