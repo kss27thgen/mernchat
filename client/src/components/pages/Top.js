@@ -48,10 +48,10 @@ const Top = (props) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		if (!currentUser.username || !currentUser.roomId) {
+		if (!currentUser.username) {
 			return setError({
 				id: uuidv4(),
-				message: "Your name and room required",
+				message: "Your name is required",
 			});
 		}
 
@@ -96,7 +96,7 @@ const Top = (props) => {
 						onChange={handleChange}
 					/>{" "}
 				</div>{" "}
-				<div className="form-control">
+				{/* <div className="form-control">
 					{" "}
 					<label htmlFor="roomId">Rooms</label>{" "}
 					<select name="roomId" id="roomId" onChange={handleChange}>
@@ -107,7 +107,7 @@ const Top = (props) => {
 						</option>{" "}
 						{renderOptions()}
 					</select>{" "}
-				</div>{" "}
+				</div>{" "} */}
 				<button type="submit" className="button">
 					{" "}
 					Join Chat{" "}

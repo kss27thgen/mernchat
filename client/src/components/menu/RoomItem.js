@@ -9,8 +9,8 @@ import socket from "../../utils/socket";
 const RoomItem = ({ room }) => {
 	const roomContext = useContext(RoomContext);
 	const userContext = useContext(UserContext);
-	const { setCurrentRoom, setRooms } = roomContext;
-	const { toggleMenu, currentUser } = userContext;
+	const { setCurrentRoom, setRooms, currentRoom } = roomContext;
+	const { toggleMenu, leaveMenu, currentUser } = userContext;
 
 	const handleClick = () => {
 		setCurrentRoom(room);
@@ -18,7 +18,7 @@ const RoomItem = ({ room }) => {
 			username: currentUser.username,
 			roomId: room._id,
 		});
-		toggleMenu();
+		leaveMenu();
 	};
 
 	const handleDelete = async () => {

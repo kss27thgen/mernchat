@@ -14,7 +14,7 @@ import { storage } from "../../firebase";
 const ChatForm = (props) => {
 	const userContext = useContext(UserContext);
 	const roomContext = useContext(RoomContext);
-	const { currentUser, toggleMenu, menu } = userContext;
+	const { currentUser, toggleMenu, enterMenu, leaveMenu, menu } = userContext;
 	const { currentRoom } = roomContext;
 
 	const [content, setContent] = useState("");
@@ -32,6 +32,9 @@ const ChatForm = (props) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		if (!content && !file) {
+			return;
+		}
 		if (menu) {
 			postRoom();
 		} else {
@@ -77,6 +80,15 @@ const ChatForm = (props) => {
 		emitChat(newChat);
 	};
 
+	const handleSwitch = () => {
+		if (menu) {
+			leaveMenu();
+		} else {
+			enterMenu();
+			socket.emit("leaveRoom", { currentUser, currentRoom });
+		}
+	};
+
 	return (
 		<form className="chat-form" onSubmit={handleSubmit}>
 			<div className="chat-input-wrapper">
@@ -104,7 +116,7 @@ const ChatForm = (props) => {
 					hidden
 				/>
 			</div>
-			<div className="chat-button" onClick={() => toggleMenu()}>
+			<div className="chat-button" onClick={handleSwitch}>
 				<FontAwesomeIcon
 					className="icon-menu"
 					icon={menu ? faToggleOff : faToggleOn}

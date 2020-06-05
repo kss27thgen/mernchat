@@ -47,8 +47,6 @@ const ChatList = ({ history, currentUser }) => {
 
 	const fetchChat = async () => {
 		setLoading(true);
-		console.log("fetch chat");
-		console.log(chat);
 		const res = await axios.get(`/api/chat/${currentRoom._id}`);
 
 		setChat(res.data);

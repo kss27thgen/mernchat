@@ -5,6 +5,7 @@ const {
 	getCurrentUser,
 	userLeave,
 	getRoomUsers,
+	getUsers,
 } = require("./users");
 
 module.exports = (io) => {
@@ -35,7 +36,7 @@ module.exports = (io) => {
 					formatMessage(
 						uuidv4(),
 						botName,
-						`(${user.username}) has joined the chat`,
+						`(${user.username}) has joined the room`,
 					),
 				);
 
@@ -63,6 +64,25 @@ module.exports = (io) => {
 		// listen from deleteRoom
 		socket.on("deleteRoom", () => {
 			io.emit("room");
+		});
+
+		// Send users and roomId info
+		socket.on("allUsers", () => {
+			io.emit("allUsers", {
+				users: getUsers(),
+			});
+		});
+
+		// leave currentRoom
+		socket.on("leaveRoom", ({ currentUser, currentRoom }) => {
+			io.to(currentRoom._id).emit(
+				"message",
+				formatMessage(
+					uuidv4(),
+					botName,
+					`(${currentUser.username}) has left the room`,
+				),
+			);
 		});
 
 		// Runs when client disconnects
