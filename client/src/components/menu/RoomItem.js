@@ -9,12 +9,16 @@ import socket from "../../utils/socket";
 const RoomItem = ({ room }) => {
 	const roomContext = useContext(RoomContext);
 	const userContext = useContext(UserContext);
-	const { setCurrentRoom, setRooms } = roomContext;
-	const { toggleMenu } = userContext;
+	const { setCurrentRoom, setRooms, currentRoom } = roomContext;
+	const { toggleMenu, leaveMenu, currentUser } = userContext;
 
 	const handleClick = () => {
 		setCurrentRoom(room);
-		toggleMenu();
+		socket.emit("joinRoom", {
+			username: currentUser.username,
+			roomId: room._id,
+		});
+		leaveMenu();
 	};
 
 	const handleDelete = async () => {

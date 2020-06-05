@@ -1,7 +1,14 @@
 import React, { useReducer } from "react";
 import UserContext from "./userContext";
 import userReducer from "./userReducer";
-import { SET_CURRENT, ADD_USER, CLEAR_CURRENT, TOGLLE_MENU } from "../type";
+import {
+	SET_CURRENT,
+	ADD_USER,
+	CLEAR_CURRENT,
+	ENTER_MENU,
+	LEAVE_MENU,
+	TOGLLE_MENU,
+} from "../type";
 
 const UserState = (props) => {
 	const initialState = {
@@ -27,6 +34,14 @@ const UserState = (props) => {
 		dispatch({ type: TOGLLE_MENU });
 	};
 
+	const enterMenu = () => {
+		dispatch({ type: ENTER_MENU });
+	};
+
+	const leaveMenu = () => {
+		dispatch({ type: LEAVE_MENU });
+	};
+
 	return (
 		<UserContext.Provider
 			value={{
@@ -36,6 +51,8 @@ const UserState = (props) => {
 				setCurrent,
 				addUser,
 				toggleMenu,
+				enterMenu,
+				leaveMenu,
 			}}
 		>
 			{props.children}

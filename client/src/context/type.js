@@ -2,6 +2,8 @@ export const SET_CURRENT = "SET_CURRENT";
 export const CLEAR_CURRENT = "CLEAR_CURRENT";
 export const ADD_USER = "ADD_USER";
 export const TOGLLE_MENU = "TOGLLE_MENU";
+export const ENTER_MENU = "ENTER_MENU";
+export const LEAVE_MENU = "LEAVE_MENU";
 
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const SET_ERROR = "SET_ERROR";

@@ -28,9 +28,14 @@ function getRoomUsers(roomId) {
 	return users.filter((user) => user.roomId === roomId);
 }
 
+function getUsers() {
+	return users;
+}
+
 module.exports = {
 	userJoin,
 	getCurrentUser,
 	userLeave,
 	getRoomUsers,
+	getUsers,
 };

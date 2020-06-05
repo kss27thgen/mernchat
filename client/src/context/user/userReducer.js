@@ -1,4 +1,11 @@
-import { SET_CURRENT, ADD_USER, CLEAR_CURRENT, TOGLLE_MENU } from "../type";
+import {
+	SET_CURRENT,
+	ADD_USER,
+	CLEAR_CURRENT,
+	ENTER_MENU,
+	LEAVE_MENU,
+	TOGLLE_MENU,
+} from "../type";
 
 export default (state, action) => {
 	switch (action.type) {
@@ -16,6 +23,16 @@ export default (state, action) => {
 			return {
 				...state,
 				menu: !state.menu,
+			};
+		case ENTER_MENU:
+			return {
+				...state,
+				menu: true,
+			};
+		case LEAVE_MENU:
+			return {
+				...state,
+				menu: false,
 			};
 		default:
 			return state;

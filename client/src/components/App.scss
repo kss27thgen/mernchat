@@ -9,10 +9,10 @@
     --color-gray-dark-3: rgb(97, 97, 97);
     --color-black: rgb(17, 16, 14);
 
-    --bg-light-green: rgb(21, 36, 36);
+    --bg-light-green: url("../images/checkerboard-cross.png");
     // --bg-light-green: #ffffff;
     // --bg-green: rgb(175, 205, 245);
-    --bg-green: #4e773f;
+    --bg-green: #999;
     --bg-dark-green: rgb(95, 206, 147);
 }
 
@@ -88,6 +88,7 @@ li {
             border: none;
             border-radius: 8px;
             outline: none;
+            margin-bottom: 2rem;
         }
 
         label {
@@ -128,8 +129,6 @@ li {
     justify-content: center;
     align-items: center;
 
-
-
     .chat {
         background: var(--bg-green);
         width: 85%;
@@ -139,8 +138,7 @@ li {
         flex-direction: column;
         border-radius: 8px;
         padding-top: 2rem;
-        border: 2px solid var(--color-black);
-
+        border: 2px solid var(--color-gray-dark-2);
 
         @media (min-width: 576px) {
             width: 80%;
@@ -174,14 +172,13 @@ li {
             position: relative;
             width: 70%;
 
-
             .icon-camera {
                 position: absolute;
                 right: 1rem;
                 bottom: 18%;
                 font-size: 2rem;
                 cursor: pointer;
-                color: var(--color-gray-dark-2);
+                color: rgb(39, 38, 71);
 
                 &:hover {
                     color: lightgray;
@@ -198,9 +195,9 @@ li {
             width: 100%;
             border-radius: 8px;
             border: none;
-            padding: .5rem 1.5rem;
+            padding: 0.5rem 1.5rem;
             outline: none;
-            border: 2px solid var(--color-black);
+            border: 2px solid var(--color-gray-dark-2);
             user-select: none;
         }
 
@@ -213,8 +210,7 @@ li {
             outline: none;
             margin-left: 0.5rem;
             cursor: pointer;
-            border: 3px solid var(--color-black);
-
+            border: 3px solid var(--color-gray-dark-2);
 
             &:hover .icon-menu {
                 color: lightgray;
@@ -254,13 +250,12 @@ li {
         top: 1rem;
         right: 1rem;
         z-index: 3;
-        color: green;
+        color: rgb(98, 180, 98);
         font-style: italic;
-        border: 1px solid green;
-        padding: .2rem .5rem;
+        border: 1px solid rgb(98, 180, 98);
+        padding: 0.2rem 0.5rem;
         border-radius: 8px;
     }
-
 
     .chat-list {
         padding: 2rem;
@@ -321,19 +316,19 @@ li {
 
     .room-item {
         font-size: 1.6rem;
-        padding: .5rem 2rem;
+        padding: 0.5rem 2rem;
         border: 1px solid gray;
         cursor: pointer;
         border-radius: 8px;
         display: flex;
         justify-content: space-between;
-        margin-bottom: .5rem;
+        margin-bottom: 0.5rem;
 
         &__name {
             flex: 5;
 
             &:hover {
-                opacity: .2;
+                opacity: 0.2;
             }
         }
 
@@ -345,21 +340,8 @@ li {
                 color: tomato;
             }
         }
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 // transition
 

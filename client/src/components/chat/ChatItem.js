@@ -14,6 +14,11 @@ const ChatItem = ({ chat }) => {
 				</p>
 			</div>
 			<div className="chat-item__content">{chat.content}</div>
+			{chat.file && (
+				<a href={chat.file} target="_blank">
+					<img src={chat.file} alt="image" width="200" />
+				</a>
+			)}
 		</div>
 	);
 };

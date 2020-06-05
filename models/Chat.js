@@ -16,7 +16,9 @@ const ChatSchema = mongoose.Schema({
 	},
 	content: {
 		type: String,
-		required: true,
+	},
+	file: {
+		type: String,
 	},
 	date: {
 		type: Date,
